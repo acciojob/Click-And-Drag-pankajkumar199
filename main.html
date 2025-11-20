@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Drag & Drop To-Do</title>
+  <meta charset="utf-8" />
+  <title>Example To-Do Drag & Drop</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Cypress expects a container with class="items" -->
+  <ul class="items">
+    <li class="item" draggable="true" data-id="1">Item 1</li>
+    <li class="item" draggable="true" data-id="2">Item 2</li>
+    <li class="item" draggable="true" data-id="3">Item 3</li>
+    <li class="item" draggable="true" data-id="4">Item 4</li>
+  </ul>
 
-<ul class="items">
-  <li class="item" draggable="true">Item 1</li>
-  <li class="item" draggable="true">Item 2</li>
-  <li class="item" draggable="true">Item 3</li>
-  <li class="item" draggable="true">Item 4</li>
-</ul>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
