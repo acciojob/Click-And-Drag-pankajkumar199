@@ -45,10 +45,6 @@ body {
 }
 .item {
   position: absolute;
-  cursor: grab;
-}
-.item:active {
-  cursor: grabbing;
 }
 
 

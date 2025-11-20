@@ -1,37 +1,45 @@
 const container = document.querySelector(".items");
 const cubes = document.querySelectorAll(".item");
 
+let dragging = false;
 let activeCube = null;
+let startX, startY, offsetX, offsetY;
 
 cubes.forEach(cube => {
-  cube.draggable = true;
-
-  cube.addEventListener("dragstart", (e) => {
+  cube.addEventListener("pointerdown", (e) => {
+    dragging = true;
     activeCube = e.target;
-    e.dataTransfer.setData("text/plain", "");
-    setTimeout(() => {
-      activeCube.style.opacity = "0.3";
-    }, 0);
+
+    const rect = activeCube.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+
+    startX = rect.left - containerRect.left;
+    startY = rect.top - containerRect.top;
+
+    activeCube.setPointerCapture(e.pointerId);
   });
 
-  cube.addEventListener("dragend", () => {
-    if (activeCube) activeCube.style.opacity = "1";
-    activeCube = null;
-  });
-});
+  cube.addEventListener("pointermove", (e) => {
+    if (!dragging || activeCube !== e.target) return;
 
-container.addEventListener("dragover", (e) => {
-  e.preventDefault();
-  const rect = container.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+    const containerRect = container.getBoundingClientRect();
+    let x = e.clientX - containerRect.left - offsetX;
+    let y = e.clientY - containerRect.top - offsetY;
 
-  if (activeCube) {
-    const newX = Math.max(0, Math.min(x - activeCube.offsetWidth / 2, rect.width - activeCube.offsetWidth));
-    const newY = Math.max(0, Math.min(y - activeCube.offsetHeight / 2, rect.height - activeCube.offsetHeight));
+    // boundaries
+    x = Math.max(0, Math.min(x, containerRect.width - activeCube.offsetWidth));
+    y = Math.max(0, Math.min(y, containerRect.height - activeCube.offsetHeight));
 
     activeCube.style.position = "absolute";
-    activeCube.style.left = `${newX}px`;
-    activeCube.style.top = `${newY}px`;
-  }
+    activeCube.style.left = x + "px";
+    activeCube.style.top = y + "px";
+  });
+
+  cube.addEventListener("pointerup", (e) => {
+    dragging = false;
+    activeCube = null;
+  });
 });
