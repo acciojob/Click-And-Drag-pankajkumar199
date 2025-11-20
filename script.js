@@ -1,4 +1,4 @@
-const container = document.querySelector(".container");
+const container = document.querySelector(".items");
 const cubes = document.querySelectorAll(".cube");
 
 let activeCube = null;
@@ -38,11 +38,9 @@ function drag(e) {
 }
 
 function drop() {
-  if (activeCube) {
-    activeCube.style.zIndex = 1;
-  }
-  activeCube = null;
+  if (activeCube) activeCube.style.zIndex = 1;
 
+  activeCube = null;
   document.removeEventListener("mousemove", drag);
   document.removeEventListener("mouseup", drop);
 }
