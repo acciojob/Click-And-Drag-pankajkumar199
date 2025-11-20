@@ -1,36 +1,19 @@
 body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  background: #222;
+  font-family: Arial, sans-serif;
+  padding: 40px;
+  background: #f0f0f0;
 }
 
 .items {
-  width: 600px;
-  height: 400px;
-  border: 3px solid white;
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(3, 100px);
-  gap: 10px;
-  padding: 20px;
-  background: rgba(255,255,255,0.1);
+  list-style: none;
+  padding: 0;
+  width: 300px;
 }
 
-.cube {
-  width: 100px;
-  height: 100px;
-  background: dodgerblue;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 26px;
-  font-weight: bold;
-  position: absolute;
+.item {
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
   cursor: grab;
-  user-select: none;
 }
