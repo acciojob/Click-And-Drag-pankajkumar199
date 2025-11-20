@@ -43,6 +43,14 @@ body {
   cursor: -webkit-grabbing;
   transform: scale(1);
 }
+.item {
+  position: absolute;
+  cursor: grab;
+}
+.item:active {
+  cursor: grabbing;
+}
+
 
 .item {
   width: 200px;
